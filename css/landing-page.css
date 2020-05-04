@@ -1,6 +1,6 @@
 /*!
  * Start Bootstrap - Landing Page v5.0.7 (https://startbootstrap.com/template-overviews/landing-page)
- * Copyright 2013-2019 Start Bootstrap
+ * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/master/LICENSE)
  */
 
@@ -118,6 +118,25 @@ header.masthead h1 {
   top: 0;
   left: 0;
   opacity: 0.3;
+}
+
+.shopify {
+  position: relative;
+  background-color: #343a40;
+  background: url("../img/shopify-partner.jpg") no-repeat center center;
+  background-size: cover;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.shopify .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.05;
 }
 
 footer.footer {
