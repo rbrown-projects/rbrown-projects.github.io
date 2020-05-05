@@ -18,6 +18,10 @@ h6 {
   font-weight: 700;
 }
 
+.logo {
+  height: 40px;
+}
+
 header.masthead {
   position: relative;
   background-color: #343a40;
