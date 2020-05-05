@@ -20,6 +20,32 @@
 
   <!-- Custom styles for this template -->
   <link href="css/landing-page.min.css" rel="stylesheet">
+  <script type="text/javascript" language="javascript">
+<!--
+// Email obfuscator script 2.1 by Tim Williams, University of Arizona
+// Random encryption key feature coded by Andrew Moulden
+// This code is freeware provided these four comment lines remain intact
+// A wizard to generate this code is at http://www.jottings.com/obfuscator/
+window.onload = function(){
+  coded = "JSI4JT.UnvT84V.IJSU8@w9AvY.dS9";
+  key = "Npv9L7EKc1AkxIyU4gszMjSHTn2GZrl5PQimR6dFWOaCVbuweqfBX0o8thDJY3";
+  shift=coded.length;
+  link="";
+  for (i=0; i<coded.length; i++) {
+    if (key.indexOf(coded.charAt(i))==-1) {
+      ltr = coded.charAt(i);
+      link += (ltr);
+    }
+    else {     
+      ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length;
+      link += (key.charAt(ltr));
+    }
+  }
+document.getElementById('email1').innerHTML += "<a class='btn btn-block btn-lg btn-primary' href='mailto:"+link+"?subject=Ecommerce%20Setup%20Inquiry'>I'm Interested!</a>";
+document.getElementById('email2').innerHTML += "<a class='btn btn-block btn-lg btn-primary' href='mailto:"+link+"?subject=Ecommerce%20Setup%20Inquiry'>I'm Interested!</a>";
+  }
+//-->
+</script><noscript>Sorry, you need Javascript on to email me.</noscript>
 
 </head>
 
@@ -41,16 +67,7 @@
           <h1 class="mb-5">Build a simple, professional-looking Ecommerce website to grow your business, online.</h1>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Email Me</button>
-              </div>
-            </div>
-          </form>
+            <div id="email1" class="col-12 col-md-5" style="margin-left: auto;margin-right: auto;"></div>
         </div>
       </div>
     </div>
@@ -174,16 +191,8 @@
           <h2 class="mb-4">Ready to get started? Shoot me an email!</h2>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-              </div>
+            <div id="email2" class="col-12 col-md-5" style="margin-left: auto;margin-right: auto;">
             </div>
-          </form>
         </div>
       </div>
     </div>
