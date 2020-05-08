@@ -22,6 +22,12 @@ h6 {
   height: 40px;
 }
 
+@media (max-width: 768px) {
+  .hawaii {
+    display: none;
+  }
+}
+
 header.masthead {
   position: relative;
   background-color: #343a40;
