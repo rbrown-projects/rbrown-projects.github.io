@@ -18,6 +18,15 @@ h6 {
 
 @media (max-width: 768px) {
     .hawaii {
+        /*display: none;*/
+    }
+}
+
+@media (max-width: 768px) {
+    .title .details {
         display: none;
+    }
+    .title {
+        text-align: center;
     }
 }
