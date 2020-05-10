@@ -34,10 +34,16 @@ function submitForm(e){
     //show alert
     document.querySelector('.alert').style.display='block';
 
+    //show submitted button text
+    document.querySelector('.contact-form-button').innerHTML = 'Message submitted successfully!';
+    document.querySelector('.contact-form-button').setAttribute("disabled", true);
+
     //Hide alert after 3 s
     setTimeout(function(){
         document.querySelector('.alert').style.display='none';
-    }, 3000)
+    document.querySelector('.contact-form-button').innerHTML = 'Submit';
+    document.querySelector('.contact-form-button').removeAttribute("disabled");
+    }, 5000)
     //clear form
     document.getElementById('contactForm').reset();
 }
