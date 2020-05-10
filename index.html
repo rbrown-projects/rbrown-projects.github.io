@@ -68,7 +68,6 @@ window.onload = function(){
     }
   }
 document.getElementById('email1').innerHTML += "<a class='btn btn-block btn-lg btn-primary' href='mailto:"+link+"?subject=Ecommerce%20Setup%20Inquiry'>I'm Interested!</a>";
-document.getElementById('email2').innerHTML += "<a class='btn btn-block btn-lg btn-primary' href='mailto:"+link+"?subject=Ecommerce%20Setup%20Inquiry'>I'm Interested!</a>";
   }
 //-->
 </script><noscript>Sorry, you need Javascript on to email me.</noscript>
@@ -215,10 +214,61 @@ document.getElementById('email2').innerHTML += "<a class='btn btn-block btn-lg b
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4">Ready to get started? Shoot me an email!</h2>
+          <h2 class="mb-4">Ready to get started? Shoot me a message!</h2>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <div id="email2" class="col-12 col-md-5" style="margin-left: auto;margin-right: auto;">
+            <div class="container">
+              <div class="wrapper animated bounceInLeft">
+                <div class="contact">
+                  <div class="alert" style="display:none">Your message has been sent!</div>
+                  <form id="contactForm">
+                    <div class="form-group form-inline">
+                      <div class="col-lg-2">
+                      <label for="name">Name <span>*</span></label>
+                      </div>
+                      <div class="col-lg-10">
+                      <input type="text" name="name" id="name" class="form-control form-control-lg" maxlength="500" required>
+                      </div>
+                    </div>
+                    <div class="form-group form-inline">
+                      <div class="col-lg-2">
+                      <label for="company">Company</label>
+                      </div>
+                      <div class="col-lg-10">
+                      <input type="text" name="company" class="form-control form-control-lg" id="company" maxlength="500">
+                      </div>
+                    </div>
+                    <div class="form-group form-inline">
+                      <div class="col-lg-2">
+                      <label for="email">Email <span>*</span></label>
+                      </div>
+                      <div class="col-lg-10">
+                      <input type="email" name="email" id="email" class="form-control form-control-lg" maxlength="320" required>
+                      </div>
+                    </div>
+                    <div class="form-group form-inline">
+                      <div class="col-lg-2">
+                      <label for="phone">Phone</label>
+                      </div>
+                      <div class="col-lg-10">
+                      <input type="text" name="phone" class="form-control form-control-lg" id="phone" maxlength="50">
+                      </div>
+                    </div>
+                    <div class="form-group form-inline">
+                      <div class="col-lg-2">
+                      <label for="message">Message</label>
+                      </div>
+                      <div class="col-lg-10">
+                      <textarea name="message" rows="5" class="form-control form-control-lg" id="message" maxlength="2500"></textarea>
+                      </div>
+                    </div>
+                    <p class="required-field">Required field <span>*</span></p>
+                    <p class="submit-button">
+                      <button type="submit" class="btn btn-block btn-lg btn-success">Submit</button>
+                    </p>
+                  </form>
+                </div>
+              </div>
             </div>
         </div>
       </div>
@@ -292,7 +342,8 @@ document.getElementById('email2').innerHTML += "<a class='btn btn-block btn-lg b
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  <script src="main.js"></script>
 </body>
 
 </html>
