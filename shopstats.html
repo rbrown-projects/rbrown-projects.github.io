@@ -53,23 +53,51 @@
   <header class="masthead text-white text-center">
     <div class="overlay"></div>
     <div class="container">
-      <div class="row">
+      <div>
         <div class="col-xl-9 mx-auto">
           <h1 class="mb-5">Let's take a quick look at your site.</h1>
         </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <input type="text" id="storeHostname" placeholder="Enter Shopify store URL (ex: awesomestore.com)">
-              <button onclick="getProducts()">Analyze My Products</button>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          row-gap: 10px;
+          padding: 5px;
+          border-radius: 5px;
+        ">
+            <input type="text" style="width: 90%;text-align:center" id="storeHostname" placeholder="Enter Shopify store URL (ex: awesomestore.com)">
+              <button style="
+                  padding: 3px 10px;
+                  background: #007bff;
+                  border-radius: 5px;
+                  color: white;
+                  font-weight: bold;
+              " onclick="getProducts()" id="analyze">Analyze My Products</button>
         </div>
       </div>
     </div>
   </header>
-  <section id="summary" class="features-icons bg-light text-center">
+  <section class="features-icons bg-light text-center">
+    <div class="container" id="summary" style="display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    ">
 
+    </div>
   </section>
 
 
   <script>
+    document.getElementById("storeHostname")
+      .addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+          document.getElementById("analyze").click();
+      }
+  });
+
     async function getProducts() {
       const storeHostname = document.getElementById("storeHostname").value;
       const products = await getProductsFromStore(storeHostname);
@@ -79,23 +107,25 @@
       const resultsDiv = document.getElementById("summary");
       resultsDiv.innerHTML = `
         <h2>Outliers:</h2>
-        <ul>
+        <ul style="list-style-type:none;padding: 0;">
           ${outliers.map((product) => `<li>${product.title}</li>`).join("")}
           ${outliers.length === 0 ? `<li>Products look great!</li>` : ''}
         </ul>
-        <h2>Statistics:</h2>
-        <ul>
-          <li>Total products: ${stats.totalProducts}</li>
+        <h2>Here's your stats:</h2>
+        <ul style="list-style-type:none;padding: 0;">
+          <li>Total products analyzed (maximum of 250): ${stats.totalProducts}</li>
           <li>Average product price: ${stats.averagePrice}</li>
           <li>Variance of product prices: ${stats.priceVariance}</li>
           <li>Standard deviation of product prices: ${stats.priceStdDev}</li>
         </ul>
       `;
+
+      resultsDiv.scrollIntoView();
     }
     
     async function getProductsFromStore(storeHostname) {
-      const url = `https://${storeHostname}/products.json`;
-      const response = await fetch(url);
+      const url = `https://${storeHostname}/products.json?limit=250`;
+      let response = await fetch(url)
     
       if (!response.ok) {
         throw new Error(`Error retrieving products from store: ${response.status}`);
@@ -106,21 +136,32 @@
     
       return products;
     }
-    
-    function findInconsistentProducts(products) {
-      // your implementation here
-      return { outliers, stats };
+
+    function findVariance(arr = []) {
+       if(!arr.length){
+          return 0;
+       };
+       const sum = arr.reduce((acc, val) => acc + val);
+       const { length: num } = arr;
+       const median = sum / num;
+       let variance = 0;
+       arr.forEach(num => {
+          variance += ((num - median) * (num - median));
+       })
+       variance /= num;
+       return variance;
     }
 
     function findInconsistentProducts(products) {
       const NUM_OUTLIERS = 5; // number of outliers to return
-      const outliers = []; // array to store outliers
+      let outliers = []; // array to store outliers
 
       // calculate mean and standard deviation for prices
       let prices = products.map(product => product.variants[0].price);
+      prices = prices.filter(price => price > 0);
       prices = prices.map(price => Number(price.replace(/[^0-9.-]+/g,"")) * 100)
       let mean = prices.reduce((a, b) => a + b) / prices.length;
-      let variance = prices.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / prices.length;
+      let variance = findVariance(prices);
       let standardDeviation = Math.sqrt(variance);
 
       mean = parseFloat(mean / 100).toFixed(2);
