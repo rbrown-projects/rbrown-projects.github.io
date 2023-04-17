@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Elevate your Shopify or ecommerce store with our easy-to-install, appless micro-animated CTAs. Boost conversion rates on any ecommerce website and drive customer engagement.">
+  <title>ShopSpark</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111728637-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-111728637-2');
+  </script>
+  <style>
+
+    :root {
+      --primary-blue: #1565C0;
+      --secondary-blue: #1565C0;
+      --primary-yellow: #FFEB3B;
+      --secondary-yellow: #FBC02D;
+      --light-blue: #90CAF9;
+      --light-yellow: #FFF9C4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: var(--primary-blue);
+      color: var(--primary-yellow);
+      text-align: center;
+      padding: 1.2rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: var(--light-blue);
+    }
+
+    button {
+      background-color: var(--primary-blue);
+      color: var(--primary-yellow);
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      background-color: var(--secondary-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial-section {
+      background-color: var(--light-yellow);
+      padding: 2rem 0;
+    }
+
+    .container {
+      max-width: 80%;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+    }
+
+    .showcase h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .showcase p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+
+    .ctas {
+      display: flex;
+      flex-direction: column;
+      row-gap: 15px;
+    }
+
+    .pricing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem 0;
+    }
+
+    .pricing-card {
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      border-radius: 4px;
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-card .price {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-card ul {
+      list-style-type: none;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    .testimonial-section {
+      padding: 2rem 0;
+    }
+
+    .testimonial-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem 0;
+    }
+
+    .testimonial {
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      border-radius: 4px;
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .testimonial p {
+      margin-bottom: 1rem;
+    }
+
+    .testimonial cite {
+      font-style: normal;
+      font-weight: bold;
+    }
+
+    .typed-cursor {
+      opacity: 1;
+      animation: cursorBlink 1s infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%, 50% {
+        opacity: 1;
+      }
+      51%, 100% {
+        opacity: 0;
+      }
+    }
+
+    .why-section {
+      padding: 2rem 0;
+    }
+
+    .why-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .why-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .why-card {
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      border-radius: 4px;
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+    }
+
+    .why-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .logo {
+      animation: blink 0.8s infinite;
+      color: var(--primary-yellow);
+      transform: scale(1.5);
+    }
+    .logo:before {
+        content: "$";
+      }
+      .logo:nth-child(1) {
+        top: -30px;
+        left: -40px;
+        font: 12px/1 "Margarine", sans-serif;
+        transform: rotate(-20deg);
+        animation-duration: 0.5s;
+      }
+      .logo:nth-child(2) {
+        font: 32px/1 "Margarine", sans-serif;
+        right: -40px;
+        top: -20px;
+        transform: rotate(15deg);
+        animation-duration: 0.3s;
+      }
+      .logo:nth-child(3) {
+        font: 36px/1 "Margarine", sans-serif;
+        top: -60px;
+        left: 15px;
+        transform: rotate(10deg);
+        animation-duration: 1s;
+      }
+      .logo:nth-child(4) {
+        font: 38px/1 "Margarine", sans-serif;
+        top: -70px;
+        left: 95px;
+        transform: rotate(2deg);
+        animation-duration: 0.7s;
+      }
+      .logo:nth-child(5) {
+        font: 34px/1 "Margarine", sans-serif;
+        top: 80px;
+        left: 105px;
+        transform: rotate(-20deg);
+        animation-duration: 0.8s;
+      }
+      .logo:nth-child(6) {
+        font: 32px/1 "Margarine", sans-serif;
+        top: 80px;
+        left: 5px;
+        transform: rotate(10deg);
+        animation-duration: 1.2s;
+      }
+    
+
+    @keyframes blink {
+      25%,
+      75% {
+        color: transparent;
+      }
+      40%,
+      60% {
+        color: var(--primary-yellow);
+      }
+    }
+
+    .cloud {
+      width: 150px;
+      height: 100px;
+      position: relative;
+    }
+
+    .puff {
+      width: 60px;
+      height: 60px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      position: absolute;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+
+    .puff:first-child {
+      bottom: 0px;
+      left: -40px;
+    }
+
+    .puff:nth-child(2) {
+      bottom: 10px;
+      left: -25px;
+    }
+
+    .puff:nth-child(3) {
+      bottom: 5px;
+      left: -10px;
+    }
+
+    .puff:nth-child(4) {
+      bottom: 35px;
+      left: 15px;
+    }
+
+    .puff:nth-child(5) {
+      bottom: 15px;
+      left: 30px;
+    }
+
+    .puff:nth-child(6) {
+      bottom: 45px;
+      left: 40px;
+    }
+
+    .puff:nth-child(7) {
+      bottom: 20px;
+      left: 55px;
+    }
+
+    .puff:nth-child(8) {
+      bottom: 35px;
+      left: 70px;
+    }
+
+    .puff:nth-child(9) {
+      bottom: 5px;
+      left: 95px;
+    }
+
+    .puff:nth-child(10) {
+      bottom: 0px;
+      left: 15px;
+    }
+
+    .puff:nth-child(11) {
+      bottom: 0px;
+      left: 30px;
+    }
+
+    .puff:nth-child(12) {
+      bottom: 0px;
+      left: 40px;
+    }
+
+    .puff:last-child {
+      bottom: 0px;
+      left: 50px;
+    }
+
+    .what-the-what {
+      margin: 10px;
+      position: absolute;
+      top: 50%;
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+
+    .what-the-what.right {
+      right: 0;
+    }
+
+    .what-the-what.left {
+      left: 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .what-the-what {
+        transform: scale(0.3);
+      }
+      header h1 {
+        font-size: 1rem;
+      }
+      .showcase h2 {
+        font-size:  2rem;
+      }
+    }
+
+    .plan-details {
+      display: none;
+      margin: 20px;
+      padding: 20px;
+      background-color: #f7f7f7;
+      text-align: center;
+    }
+
+    .code-snippet {
+      width: 100%;
+      height: 150px;
+      margin: 20px 0;
+      padding: 10px;
+      font-family: monospace;
+      background: darkblue;
+      color: white;
+    }
+
+    .copy-btn {
+      background-color: #0070f3;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .hide-for-fade-in {
+      opacity: 0%;
+      margin-top: 50px;
+      -webkit-transition: opacity 0.5s, margin 0.5s;
+      -o-transition: opacity 0.5s, margin 0.5s;
+      transition: opacity 0.5s, margin 0.5s;
+    }
+
+    .fade-in {
+      opacity: 100%;
+      margin-top: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ShopSpark - Premium CTA Enhancer</h1>
+  </header>
+  <section class="container showcase">
+    <div class="what-the-what right">
+      <div class="cloud">
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+      </div>
+      <span class="logo">
+        <div class="logo"></div>
+        <div class="logo"></div>
+        <div class="logo"></div>
+        <div class="logo"></div>
+        <div class="logo"></div>
+        <div class="logo"></div>
+      </span>
+    </div>
+    <div class="what-the-what left">
+      <div class="cloud">
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+        <div class="puff"></div>
+      </div>
+      <span class="logo">
+        <div class="logo"></div>
+        <div class="logo"></div>
+        <div class="logo"></div>
+        <div class="logo"></div>
+        <div class="logo"></div>
+        <div class="logo"></div>
+      </span>
+    </div>
+    <h2>Supercharge Your Conversions <span id="typed-text"></span><span class="typed-cursor">|</span></h2>
+    <h3>Looking for a little extra spark?</h3>
+    <p>Our cutting-edge JavaScript snippet supercharges your Call-to-Action buttons with attention-grabbing micro-animations, boosting user engagement and driving higher conversions for your website.</p>
+    <div class="ctas">
+      <button id="free-cta" class="mcta">Starter - FREE</button>
+      <button class="" onclick="pay('pro')">Pro Boost - $49.99/month</button>
+      <button class="" onclick="pay('ult')">Ultimate Impact - $199.99/month</button>
+      <button class="" onclick="pay('leg')">Legendary Performance - $999.99/month</button>
+    </div>
+    <div class="plan-details" id="free-details">
+      <h3>Your FREE Code Snippet:</h3>
+      <p>Copy and paste at the end of the &lt;/body&gt; section in your HTML.  Add the class "mcta" to every button you want animated.  Easy peasy!</p>
+      <textarea class="code-snippet" readonly>
+&lt;!-- ShopSpark snippet:  Remember to update your buttons with 'mcta' class! --&gt;
+<script async>
+  const SHOPSPARK_CLASS = 'mcta'; // Name of class to apply animations to
+  !function(){const t=SHOPSPARK_CLASS,n=1.5,i=.1,a=document.createElement("style");a.type="text/css",a.innerHTML=`@keyframes jiggle {0%, 100% { transform: scale(1); }50% { transform: scale(${1+i}); }}`,document.head.appendChild(a);const e=document.getElementsByClassName(t);for(let t=0;t<e.length;t++)e[t].style.animation=\`jiggle ${n}s infinite`}();
+</script>
+      </textarea>
+      <button class="copy-btn" id="copy-btn">Copy</button>
+    </div>
+  </section>
+  <section class="container pricing hide-for-fade-in">
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Starter</h3>
+        <p class="price">FREE</p>
+        <ul>
+          <li>Basic Micro-Animations</li>
+          <li>Attract User Attention</li>
+        </ul>
+        <button id="free-cta2">Get Started</button>
+      </div>
+      <div class="pricing-card">
+        <h3>Pro Boost</h3>
+        <p class="price">$49.99</p>
+        <ul>
+          <li>Advanced Animations</li>
+          <li>Customizable Colors</li>
+          <li>Priority Support</li>
+        </ul>
+        <button class="mcta" onclick="pay('pro')">Upgrade Now</button>
+      </div>
+      <div class="pricing-card">
+        <h3>Ultimate Impact</h3>
+        <p class="price">$199.99</p>
+        <ul>
+          <li>Exclusive Animation Styles</li>
+          <li>Customizable Intensity</li>
+          <li>Priority Feature Requests</li>
+        </ul>
+        <button class="mcta" onclick="pay('ult')">Upgrade Now</button>
+      </div>
+      <div class="pricing-card">
+        <h3>Legendary Performance</h3>
+        <p class="price">$999.99/month</p>
+        <ul>
+          <li>Advanced Performance Optimization</li>
+          <li>Custom Animation Design</li>
+          <li>Dedicated Support</li>
+          <li>Personalized Onboarding</li>
+          <li>Ongoing Support</li>
+        </ul>
+        <button class="mcta" onclick="pay('leg')">Upgrade Now</button>
+      </div>
+    </div>
+  </section>
+  <section class="why-section hide-for-fade-in">
+    <div class="container">
+      <h2>Discover the Benefits</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <h3>Why CTAs?</h3>
+          <p>Call-to-Action buttons are crucial for guiding your visitors towards the desired action, whether it's purchasing a product, signing up for a newsletter, or downloading an eBook. Effective CTAs boost user engagement and contribute to a better overall user experience.</p>
+        </div>
+        <div class="why-card">
+          <h3>Why Convert?</h3>
+          <p>Conversion is the ultimate goal for any online store. By optimizing your CTAs and user experience, you increase the chances of turning visitors into customers. Higher conversions lead to more revenue and a successful, thriving online business.</p>
+        </div>
+        <div class="why-card">
+          <h3>Why ShopSpark?</h3>
+          <p>ShopSpark offers a powerful and easy-to-use solution to supercharge your CTAs and boost conversions. Our unique micro-animation technology captures user attention and encourages them to take action. With ShopSpark, you get the perfect blend of performance, customization, and support for a successful Shopify store.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="testimonial-section hide-for-fade-in">
+    <div class="container">
+      <h2>What People Are Saying</h2>
+      <div class="testimonials">
+        <blockquote class="testimonial">
+          <p>"ShopifySpark is simply necessary in 2023."</p>
+          <cite>- Karen, Store Owner</cite>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p>"The best investment I've made for my store this year!"</p>
+          <cite>- Gary, Retail Guru</cite>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p>"I can't believe how much our conversions have improved!"</p>
+          <cite>- Ansel, E-commerce Expert</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+
+    const typedTextSpan = document.getElementById('typed-text');
+    const cursorSpan = document.querySelector('.typed-cursor');
+    const textArray = [
+      'With Style!',
+      'With Class!',
+      'With Humor!',
+      'With Spark!',
+      'With Finesse!',
+      'With Radiance!',
+      'With Confidence!',
+      'With Creativity!',
+      'With Power!',
+      'With Magic!'
+    ];
+    const typingDelay = 200;
+    const erasingDelay = 100;
+    const newTextDelay = 2000;
+    let textArrayIndex = 0;
+    let charIndex = 0;
+
+    function type() {
+      if (charIndex < textArray[textArrayIndex].length) {
+        if (!cursorSpan.classList.contains('typed-cursor')) {
+          cursorSpan.classList.add('typed-cursor');
+        }
+        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, typingDelay);
+      } else {
+        cursorSpan.classList.remove('typed-cursor');
+        setTimeout(erase, newTextDelay);
+      }
+    }
+
+    function erase() {
+      if (charIndex > 0) {
+        if (!cursorSpan.classList.contains('typed-cursor')) {
+          cursorSpan.classList.add('typed-cursor');
+        }
+        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, erasingDelay);
+      } else {
+        cursorSpan.classList.remove('typed-cursor');
+        textArrayIndex++;
+        if (textArrayIndex >= textArray.length) {
+          textArrayIndex = 0;
+        }
+        setTimeout(type, typingDelay + 1100);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(type, newTextDelay + 250);
+    });
+
+    const freeCTA = document.getElementById("free-cta");
+    const freeCTA2 = document.getElementById("free-cta2");
+    const freeDetails = document.getElementById("free-details");
+    const copyBtn = document.getElementById("copy-btn");
+    const codeSnippet = document.querySelector(".code-snippet");
+
+    freeCTA.addEventListener("click", function() {
+      freeDetails.style.display = "block";
+      freeDetails.scrollIntoView({behavior: "smooth", block: "center"});
+    });
+
+    freeCTA2.addEventListener("click", function() {
+      freeDetails.style.display = "block";
+      freeDetails.scrollIntoView({behavior: "smooth", block: "center"});
+    });
+
+    copyBtn.addEventListener("click", function() {
+      codeSnippet.select();
+      document.execCommand("copy");
+    });
+
+    const projects = document.querySelectorAll("section:not(:first-child)");
+    projects.forEach(function(project) {
+      window.addEventListener("scroll", function() {
+        let scroll = window.scrollY;
+        if (scroll > project.offsetTop - 500) {
+          project.classList.add("fade-in");
+        }
+      });
+    });
+
+    function pay(paytype) {
+      switch(paytype) {
+        case 'pro':
+          window.location.href = 'https://buy.stripe.com/dR66q57Vz2jw8FycMN';
+          break;
+        case 'ult':
+          window.location.href = 'https://buy.stripe.com/8wMeWBb7L7DQcVO7su';
+          break;
+        case 'leg':
+          window.location.href = 'https://buy.stripe.com/eVa9Ch6Rve2e8Fy28b';
+          break;
+        default:
+          // do nothing
+          break;
+      }
+    }
+
+  </script>
+    <script async>
+    const SHOPSPARK_CLASS = 'mcta'; // Name of class to apply animations to
+    console.log(SHOPSPARK_CLASS)
+    !function(){const t=SHOPSPARK_CLASS,n=1.5,i=.1,a=document.createElement("style");a.type="text/css",a.innerHTML=`@keyframes jiggle {0%, 100% { transform: scale(1); }50% { transform: scale(${1+i}); }}`,document.head.appendChild(a);const e=document.getElementsByClassName(t);for(let t=0;t<e.length;t++)e[t].style.animation=`jiggle ${n}s infinite`}();
+  </script>
+</body>
+</html>
