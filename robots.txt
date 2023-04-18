@@ -1,0 +1,19 @@
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /cgi-bin/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+Disallow: /wp-login.php
+Disallow: /wp-register.php
+Disallow: /xmlrpc.php
+Disallow: /trackback/
+Disallow: /comments/feed/
+Disallow: /wp-comments-post.php
+Disallow: /category/*/*
+Disallow: */trackback/
+Disallow: */comments/
+
+Allow: /wp-content/uploads/
+
+Sitemap: https://becuille.com/sitemap.xml

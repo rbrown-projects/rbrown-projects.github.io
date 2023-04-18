@@ -1,0 +1,43 @@
+function animateCTAButtons(animationIntensity) {
+  // Customizable settings
+  const ctaButtonClass = 'my-cta-button';
+  const animationDuration = 1.5; // In seconds
+  const maxScaleFactor = 1 + animationIntensity; // Maximum scale factor for the jiggle animation
+
+  // Add keyframes for the jiggle animation
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  
+  let keyframes = '';
+  const numFrames = Math.floor(100 / animationIntensity);
+  for (let i = 0; i < numFrames; i++) {
+    const scale = 1 + ((i % 2 === 0) ? animationIntensity : 0);
+    const percentage = i * animationIntensity;
+    keyframes += `${percentage}% { transform: scale(${scale}); } `;
+  }
+  keyframes += `100% { transform: scale(1); }`;
+
+  style.innerHTML = `
+    @keyframes jiggle {
+      ${keyframes}
+    }
+  `;
+
+  // Append the style element to the document head
+  document.head.appendChild(style);
+
+  // Apply the jiggle animation to the CTA buttons
+  const ctaButtons = document.getElementsByClassName(ctaButtonClass);
+  for (let i = 0; i < ctaButtons.length; i++) {
+    ctaButtons[i].style.animation = `jiggle ${animationDuration}s infinite`;
+  }
+
+  // Worthless code to obfuscate when minified
+  const a = [1, 2, 3];
+  const b = [4, 5, 6];
+  const c = a.concat(b).reverse();
+  console.log(c);
+}
+
+// Example usage with animation intensity of 0.2
+animateCTAButtons(0.2);
