@@ -41,3 +41,147 @@ function animateCTAButtons(animationIntensity) {
 
 // Example usage with animation intensity of 0.2
 animateCTAButtons(0.2);
+
+//////////////////////////////////////////////////////////////////////////////
+
+  (function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('optimizing everything...')
+    const images = Array.from(document.querySelectorAll('img'));
+    const hiddenImages = Array.from(document.querySelectorAll('[hidden] img, [aria-hidden="true"] img, [style*="display:none"] img, [style*="display: none"] img'));
+
+    const inViewConfig = {
+      rootMargin: '0px 0px 0px 0px',
+    };
+
+    const preloadImage = (image) => {
+      const link = document.createElement('link');
+      link.href = image.src;
+      link.rel = 'preload';
+      link.as = 'image';
+      document.head.appendChild(link);
+    };
+
+    const onIntersection = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const image = entry.target;
+          if (image.getAttribute('loading') === 'lazy') {
+            image.setAttribute('loading', 'auto');
+          }
+          observer.unobserve(image);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(onIntersection, inViewConfig);
+    
+    // Add 'loading="lazy"' for images not in view and observe them
+    images.forEach(image => {
+      image.setAttribute('loading', 'lazy');
+      observer.observe(image);
+    });
+
+    // Pre-fetch hidden images for carousels, galleries, etc.
+    hiddenImages.forEach(image => {
+      preloadImage(image);
+    });
+  });
+})();
+
+//////////////////////////////////////////////////////////////////////////////
+
+(function() {
+  // Defer non-critical JavaScript
+  const deferScripts = () => {
+    const scripts = Array.from(document.getElementsByTagName('script'));
+
+    scripts.forEach(script => {
+      const src = script.getAttribute('src');
+      if (src) {
+        const deferredScript = document.createElement('script');
+        deferredScript.src = src;
+        deferredScript.async = true;
+        document.body.appendChild(deferredScript);
+        script.parentNode.removeChild(script);
+      }
+    });
+  };
+
+  // Lazy load images
+  const lazyLoadImages = () => {
+    const images = document.querySelectorAll('img');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            observer.unobserve(img);
+          }
+        });
+      });
+
+      images.forEach(img => {
+        if (img.dataset.src) {
+          observer.observe(img);
+        }
+      });
+    } else {
+      // Fallback for browsers without IntersectionObserver support
+      images.forEach(img => {
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+        }
+      });
+    }
+  };
+
+  // Initialize optimizations after DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    deferScripts();
+    lazyLoadImages();
+  });
+})();
+
+//////////////////////////////////////////////////////////////////////////////
+
+function mobileExitIntent(sensitivity) {
+  return new Promise((resolve) => {
+    let touchStartY = null;
+    let touchStartTime = null;
+
+    const handleTouchStart = (event) => {
+      touchStartY = event.touches[0].clientY;
+      touchStartTime = new Date().getTime();
+    };
+
+    const handleTouchEnd = (event) => {
+      const touchEndY = event.changedTouches[0].clientY;
+      const touchEndTime = new Date().getTime();
+      const deltaY = touchEndY - touchStartY;
+      const deltaTime = touchEndTime - touchStartTime;
+
+      if (deltaY < 0 && Math.abs(deltaY) > sensitivity && deltaTime < 200) {
+        document.removeEventListener('touchstart', handleTouchStart);
+        document.removeEventListener('touchend', handleTouchEnd);
+        resolve(true);
+      }
+    };
+
+    document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchend', handleTouchEnd);
+  });
+}
+
+// Usage example
+(async () => {
+  const exitIntentTriggered = await mobileExitIntent(100);
+  if (exitIntentTriggered) {
+    alert("Exit intent detected! Here's your discount code: DISCOUNT10");
+  }
+})();
+

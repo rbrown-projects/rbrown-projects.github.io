@@ -72,6 +72,53 @@ document.getElementById('email1').innerHTML += "<a class='btn btn-block btn-lg b
 //-->
 </script><noscript>Sorry, you need Javascript on to email me.</noscript>
 
+<script>
+  (function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('optimizing everything...')
+    const images = Array.from(document.querySelectorAll('img'));
+    const hiddenImages = Array.from(document.querySelectorAll('[hidden] img, [aria-hidden="true"] img, [style*="display:none"] img, [style*="display: none"] img'));
+
+    const inViewConfig = {
+      rootMargin: '0px 0px 0px 0px',
+    };
+
+    const preloadImage = (image) => {
+      const link = document.createElement('link');
+      link.href = image.src;
+      link.rel = 'preload';
+      link.as = 'image';
+      document.head.appendChild(link);
+    };
+
+    const onIntersection = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const image = entry.target;
+          if (image.getAttribute('loading') === 'lazy') {
+            image.setAttribute('loading', 'auto');
+          }
+          observer.unobserve(image);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(onIntersection, inViewConfig);
+    
+    // Add 'loading="lazy"' for images not in view and observe them
+    images.forEach(image => {
+      image.setAttribute('loading', 'lazy');
+      observer.observe(image);
+    });
+
+    // Pre-fetch hidden images for carousels, galleries, etc.
+    hiddenImages.forEach(image => {
+      preloadImage(image);
+    });
+  });
+})();
+</script>
+
 </head>
 
 <body>

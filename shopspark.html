@@ -505,6 +505,46 @@
       opacity: 1;
     }
 
+    /* Popup container */
+    .popup-container {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Popup content */
+    .popup-content {
+      background-color: #ffffff;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+    }
+
+    /* Close button */
+    .close-button {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
@@ -714,6 +754,13 @@
     <p>At ShopSpark, we know that time is money, which is why we've made it incredibly easy to install our micro-animation script on your website. All you need to do is copy and paste a small code snippet at the bottom of your HTML body, and you'll be up and running in no time.</p>
     <p>Plus, our script is verified to be lightning-fast and secure, so you don't have to worry about it slowing down your site or compromising your security. With ShopSpark, you can boost your conversions and engage your users with confidence.</p>
   </section>
+  <div id="popup" class="popup-container">
+    <div class="popup-content">
+      <span class="close-button" id="close-button">&times;</span>
+      <h2>Special Offer</h2>
+      <p>Use discount code <strong>CONVERT30</strong> to get 30% off!</p>
+    </div>
+  </div>
   <footer class="footer">
     &copy; A Becuille Product 2023. All Rights Reserved.  
   </footer>
@@ -848,6 +895,29 @@
     const SHOPSPARK_CLASS = 'mcta'; // Name of class to apply animations to
     console.log(SHOPSPARK_CLASS)
     !function(){const t=SHOPSPARK_CLASS,n=1.5,i=.1,a=document.createElement("style");a.type="text/css",a.innerHTML=`@keyframes jiggle {0%, 100% { transform: scale(1); }50% { transform: scale(${1+i}); }}`,document.head.appendChild(a);const e=document.getElementsByClassName(t);for(let t=0;t<e.length;t++)e[t].style.animation=`jiggle ${n}s infinite`}();
+  </script>
+  <script>
+    function mobileExitIntent(e){return new Promise(t=>{let n=null,i=null,c=e=>{n=e.touches[0].clientY,i=new Date().getTime()},o=r=>{let u=r.changedTouches[0].clientY,l=new Date().getTime(),s=u-n,d=l-i;s<0&&Math.abs(s)>e&&d<200&&(document.removeEventListener("touchstart",c),document.removeEventListener("touchend",o),t(!0))};document.addEventListener("touchstart",c),document.addEventListener("touchend",o)})}
+    // Usage example
+    (async () => {
+      const popup = document.getElementById('popup');
+      const closeButton = document.getElementById('close-button');
+
+      function openPopup() {
+        popup.style.display = 'block';
+      }
+
+      function closePopup() {
+        popup.style.display = 'none';
+      }
+
+      closeButton.addEventListener('click', closePopup);
+
+      const exitIntentTriggered = await mobileExitIntent(100);
+      if (exitIntentTriggered) {
+        openPopup();
+      }
+    })();
   </script>
 </body>
 </html>
