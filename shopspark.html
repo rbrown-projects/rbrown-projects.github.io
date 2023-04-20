@@ -114,7 +114,7 @@
     .showcase h2 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      min-height: 120px;
+      min-height: 160px;
     }
 
     .showcase p {
@@ -260,6 +260,7 @@
     .logo {
       animation: blink 0.8s infinite;
       color: var(--primary-yellow);
+      display: none;
       transform: scale(1.5);
     }
     .logo:before {
@@ -277,46 +278,94 @@
         right: -40px;
         top: -20px;
         transform: rotate(15deg);
-        animation-duration: 0.3s;
+        animation-duration: 0.6s;
       }
       .logo:nth-child(3) {
         font: 36px/1 "Margarine", sans-serif;
         top: -60px;
         left: 15px;
         transform: rotate(10deg);
-        animation-duration: 1s;
+        animation-duration: 0.7s;
       }
       .logo:nth-child(4) {
         font: 38px/1 "Margarine", sans-serif;
         top: -70px;
         left: 95px;
         transform: rotate(2deg);
-        animation-duration: 0.7s;
+        animation-duration: 0.8s;
       }
       .logo:nth-child(5) {
         font: 34px/1 "Margarine", sans-serif;
         top: 80px;
         left: 105px;
         transform: rotate(-20deg);
-        animation-duration: 0.8s;
+        animation-duration: 0.9s;
       }
       .logo:nth-child(6) {
         font: 32px/1 "Margarine", sans-serif;
         top: 80px;
         left: 5px;
         transform: rotate(10deg);
-        animation-duration: 1.2s;
+        animation-duration: 1s;
       }
     
 
-    @keyframes blink {
-      25%,
-      75% {
-        color: transparent;
+    @keyframes left {
+      0% {
+        left: 40%;
+        opacity: 1;
+        transform: scale(4);
+        z-index: 1000;
       }
-      40%,
-      60% {
-        color: var(--primary-yellow);
+      25% {
+        left: 25%;
+        opacity: 1;
+      }
+      50% {
+        left:  20%;
+        opacity: .4;
+      }
+      75% {
+        left: 5%;
+        opacity: .3;
+      }
+      100% {
+        left: 0%;
+        opacity: .1;
+      }
+    }
+
+    @keyframes right {
+      0% {
+        right: 40%;
+        opacity: 0.98;
+        transform: scale(3.8);
+        z-index: 1000;
+      }
+      25% {
+        right: 35%;
+        opacity: 1;
+      }
+      50% {
+        right:  20%;
+        opacity: .4;
+      }
+      75% {
+        right: 10%;
+        opacity: .3;
+      }
+      100% {
+        right: 0%;
+        opacity: .1;
+      }
+    }
+
+    @keyframes procession {
+      0% {
+        left: -50%;
+      }
+      100% {
+        left: 120%;
       }
     }
 
@@ -332,73 +381,86 @@
       background-color: #ffffff;
       border-radius: 50%;
       position: absolute;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 15px 25px 10px 5px rgba(0, 0, 0, 0.1);
       z-index: 100;
     }
 
     .puff:first-child {
       bottom: 0px;
       left: -40px;
+      animation: 2s ease 0s infinite normal none running jiggle;
     }
 
     .puff:nth-child(2) {
       bottom: 10px;
       left: -25px;
+      animation: 3.5s ease 0s infinite normal none running jiggle;
     }
 
     .puff:nth-child(3) {
       bottom: 5px;
       left: -10px;
+      animation: 4s ease 1s infinite normal none running jiggle;
     }
 
     .puff:nth-child(4) {
       bottom: 35px;
       left: 15px;
+      animation: 3s ease 0s infinite normal none running jiggle;
     }
 
     .puff:nth-child(5) {
       bottom: 15px;
       left: 30px;
+      animation: 4s ease 1s infinite normal none running jiggle;
     }
 
     .puff:nth-child(6) {
       bottom: 45px;
       left: 40px;
+      animation: 2s ease 0s infinite normal none running jiggle;
     }
 
     .puff:nth-child(7) {
       bottom: 20px;
       left: 55px;
+      animation: 3s ease 0s infinite normal none running jiggle;
     }
 
     .puff:nth-child(8) {
       bottom: 35px;
       left: 70px;
+      animation: 4.5s ease 2s infinite normal none running jiggle;
     }
 
     .puff:nth-child(9) {
       bottom: 5px;
       left: 95px;
+      animation: 3s ease 0s infinite normal none running jiggle;
     }
 
     .puff:nth-child(10) {
       bottom: 0px;
       left: 15px;
+      animation: 2s ease 0s infinite normal none running jiggle;
     }
 
     .puff:nth-child(11) {
       bottom: 0px;
       left: 30px;
+      animation: 2.5s ease 0s infinite normal none running jiggle;
     }
 
     .puff:nth-child(12) {
       bottom: 0px;
       left: 40px;
+      animation: 4s ease 0s infinite normal none running jiggle;
     }
 
     .puff:last-child {
       bottom: 0px;
       left: 50px;
+      animation: 3s ease 0s infinite normal none running jiggle;
     }
 
     .what-the-what {
@@ -407,14 +469,11 @@
       top: 50%;
       transform: scale(0.8);
       opacity: 0.5;
+      display: none;
     }
 
-    .what-the-what.right {
-      right: 0;
-    }
-
-    .what-the-what.left {
-      left: 20px;
+    .what-the-what.next {
+      display: block;
     }
 
     @media screen and (max-width: 768px) {
@@ -821,6 +880,43 @@
         setTimeout(type, typingDelay + 1100);
       }
     }
+
+    function getRandomInt(min, max) {   return Math.round((min - 0.5) + Math.random() * (max - min + 1)); }
+
+    function createCloudClones(count=20) {
+      const cloud = document.querySelector(".what-the-what");
+      const clones =[];
+      for(let i=0;i<count;i++) {
+        const clone = cloud.cloneNode(true);
+        const randomSeed = getRandomInt(20,40);
+        const size = getRandomInt(3,9);
+        const time = size < 6 ? 120 : 30;
+        clone.classList.add('next');
+        clone.style.transform = 'scale(0.'+size+')';
+        clone.style['z-index'] = size > 6 ? -70 : -100;
+        clone.style.left = '-150px';
+        clone.style.opacity = 1;
+        clone.style.top = randomSeed + '%';
+        clone.style.animation = time+'s ease 0s infinite procession';
+        clones.push(clone);
+      }
+      cloud.style.display = 'none';
+      return [cloud,clones];
+    }
+
+    function addCloud(cloud, clones) {
+      const clone = clones.pop();
+      cloud.after(clone);
+      if(clones.length > 0) {
+        setTimeout(function() {
+          addCloud(cloud, clones)
+        },getRandomInt(1,5)*1000)
+      }
+    }
+
+    const [cloud,clones] = createCloudClones();
+    addCloud(cloud, clones);
+
 
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(type, newTextDelay + 250);
