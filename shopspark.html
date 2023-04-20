@@ -71,7 +71,6 @@
 
     body.morning {
       background: radial-gradient(circle closest-side at 10% 10%, yellow 40%, orange 180%, purple 900%);
-      color:  white;
       transition: background 4s linear, color 4s;
     }
 
@@ -83,9 +82,28 @@
       box-shadow: 20px -10px 5px rgba(54, 1, 63, 0.2);
     }
 
+    body.day .showcase {
+      color: black;
+      transition: color 2s ease 0s;
+    }
+
+    body.morning .showcase {
+      color: white;
+      transition: color 2s ease 0s;
+    }
+
+    body.evening .showcase {
+      color: white;
+      transition: color 2s ease 0s;
+    }
+
+    body.night .showcase {
+      color: white;
+      transition: color 2s ease 0s;
+    }
+
     body.evening {
       background: radial-gradient(circle closest-side at 90% 20%, yellow 40%, orange 180%, purple 900%);
-      color:  white;
       transition: background linear 2s, color 2s;
 
     }
@@ -95,12 +113,11 @@
       background: deeppink;
       position: absolute;
       transition: box-shadow 1s, background 1s;
-      box-shadow: -15px -75px 50px rgba(134, 1, 113, 0.7);
+      box-shadow: -15px -75px 50px rgba(134, 1, 113, 0.4);
     }
 
     body.night {
       background: radial-gradient(circle closest-side at 70% 2%, white 10%, darkblue 25%, midnightblue 100%, midnightblue 100%, black 900%);
-      color:  white;
       transition: background linear 4s, color 4s;
     }
 
@@ -227,6 +244,8 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: left;
+      background-color: #fff;
+      flex: 1;
       gap: 1rem;
       padding: 2rem 4rem;
     }
