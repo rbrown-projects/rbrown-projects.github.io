@@ -65,7 +65,55 @@
       font-family: 'Montserrat', sans-serif;
       line-height: 1.6;
       color: #333;
-      background-color: var(--light-blue);
+      background: radial-gradient(circle closest-side at 70% 2%, white 5%, yellow 10%, var(--light-blue) 35%);
+      transition: background 2s linear, color 2s;
+    }
+
+    body.morning {
+      background: radial-gradient(circle closest-side at 10% 10%, yellow 40%, orange 180%, purple 900%);
+      color:  white;
+      transition: background 4s linear, color 4s;
+    }
+
+    body.morning .puff {
+      width: 60px;
+      background: deeppink;
+      position: absolute;
+      transition: box-shadow 1s, background 1s;
+      box-shadow: 20px -10px 5px rgba(54, 1, 63, 0.2);
+    }
+
+    body.evening {
+      background: radial-gradient(circle closest-side at 90% 20%, yellow 40%, orange 180%, purple 900%);
+      color:  white;
+      transition: background linear 2s, color 2s;
+
+    }
+
+    body.evening .puff {
+      width: 60px;
+      background: deeppink;
+      position: absolute;
+      transition: box-shadow 1s, background 1s;
+      box-shadow: -15px -75px 50px rgba(134, 1, 113, 0.7);
+    }
+
+    body.night {
+      background: radial-gradient(circle closest-side at 70% 2%, white 10%, darkblue 25%, midnightblue 100%, midnightblue 100%, black 900%);
+      color:  white;
+      transition: background linear 4s, color 4s;
+    }
+
+    body.night .puff {
+      width: 60px;
+      background: black;
+      position: absolute;
+      transition: box-shadow 1s, background 1s;
+      box-shadow: -5px -15px 49px rgba(255, 255, 255, 0.05);
+    }
+
+    body.day .puff {
+      transition: box-shadow 1s, background 1s;
     }
 
     button {
@@ -917,6 +965,30 @@
     const [cloud,clones] = createCloudClones();
     addCloud(cloud, clones);
 
+    const cycles = ['morning', 'day', 'evening', 'night'];
+    function incrementCycle(cycleIndex) {
+      if(cycleIndex === 3) return 0;
+      return cycleIndex + 1;
+    } 
+    function getCycle(cycleIndex) {
+      return cycles[cycleIndex];
+    }
+    function getLastCycle(cycleIndex) {
+      if(cycleIndex === 0) return cycles[3];
+      return cycles[cycleIndex - 1];
+    }
+
+    function runna(cycleIndex=1) {
+      const body = document.querySelector("body");
+      body.classList.remove(getLastCycle(cycleIndex));
+      body.classList.add(getCycle(cycleIndex));
+      nextIndex = incrementCycle(cycleIndex);
+      console.log(nextIndex, getCycle(cycleIndex))
+      setTimeout(function(){
+        runna(nextIndex)
+      }, 15000)
+    }
+    runna()
 
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(type, newTextDelay + 250);
