@@ -600,7 +600,7 @@
     </div>
     <h2>Supercharge Your Conversions <span id="typed-text"></span><span class="typed-cursor">|</span></h2>
     <h3>Looking for a little extra spark?</h3>
-    <p>Our cutting-edge JavaScript snippet supercharges your Call-to-Action buttons with attention-grabbing micro-animations, boosting user engagement and driving higher conversions for your website.</p>
+    <p>Our cutting-edge JavaScript snippet will supercharge your storefront, boost user engagement and driving higher conversions for your website.</p>
     <div class="ctas">
       <button id="free-cta" class="mcta">Starter - FREE</button>
       <button class="" onclick="pay('pro')">Pro Boost - $49.99/month</button>
@@ -612,10 +612,12 @@
       <h3>Your FREE Code Snippet:</h3>
       <p>Copy and paste at the end of the &lt;/body&gt; section in your HTML.  Add the class "mcta" to every button you want animated.  Easy peasy!</p>
       <textarea class="code-snippet" readonly>
-&lt;!-- ShopSpark snippet:  Remember to update your buttons with 'mcta' class! --&gt;
+&lt;!-- ShopSpark snippet:  Remember to update your CTA buttons with the 'mcta' class! --&gt;
 <script async>
   const SHOPSPARK_CLASS = 'mcta'; // Name of class to apply animations to
-  !function(){const t=SHOPSPARK_CLASS,n=1.5,i=.1,a=document.createElement("style");a.type="text/css",a.innerHTML=`@keyframes jiggle {0%, 100% { transform: scale(1); }50% { transform: scale(${1+i}); }}`,document.head.appendChild(a);const e=document.getElementsByClassName(t);for(let t=0;t<e.length;t++)e[t].style.animation=\`jiggle ${n}s infinite`}();
+  const INTENSITY = 1;  // Enter a value between 1-10
+
+  !function(){const t=SHOPSPARK_CLASS,n=1.5,i=(INTENSITY/100),a=document.createElement("style");a.type="text/css",a.innerHTML=`@keyframes jgl {0%, 100% { transform: scale(1); }50% { transform: scale(${1+i}); }}`,document.head.appendChild(a);const e=document.getElementsByClassName(t);for(let t=0;t<e.length;t++)e[t].style.animation=\`jgl ${n}s infinite`}();
 </script>
       </textarea>
       <button class="copy-btn" id="copy-btn">Copy</button>
@@ -627,9 +629,9 @@
         <h3>Starter</h3>
         <p class="price">FREE</p>
         <ul>
-          <li>Basic Micro-Animations</li>
-          <li>Attract User Attention</li>
-          <li>Boost Engagement</li>
+          <li>Basic micro-animations</li>
+          <li>Attract user attention</li>
+          <li>Boost engagement</li>
         </ul>
         <button id="free-cta2">Get Started</button>
       </div>
@@ -637,19 +639,19 @@
         <h3>Pro Boost</h3>
         <p class="price">$49.99/mo</p>
         <ul>
-          <li>Advanced Animations</li>
-          <li>Customizable Colors</li>
-          <li>Priority Support</li>
+          <li>Advanced micro-animations</li>
+          <li>Basic image optimizations</li>
+          <li>Basic script optimizations</li>
         </ul>
         <button class="mcta" onclick="pay('pro')">Upgrade Now</button>
       </div>
       <div class="pricing-card">
-        <h3>Small Business Boost</h3>
+        <h3>Small Business Pro Boost</h3>
         <p class="price">$79.99</p>
         <ul>
-          <li>One-Time Fee</li>
-          <li>Advanced Animations</li>
-          <li>Customizable Colors</li>
+          <li>Available exclusively for small business</li>
+          <li>Boost performance sitewide</li>
+          <li>Pay once, use forever</li>
         </ul>
         <button class="mcta" onclick="pay('bet')">Upgrade Now</button>
       </div>
@@ -657,9 +659,10 @@
         <h3>Ultimate Impact</h3>
         <p class="price">$199.99/mo</p>
         <ul>
-          <li>Exclusive Animation Styles</li>
-          <li>Customizable Intensity</li>
-          <li>Priority Feature Requests</li>
+          <li>Advanced image optimizations</li>
+          <li>Advanced script optimizations</li>
+          <li>Exclusive micro-animation styles</li>
+          <li>Priority feature requests</li>
         </ul>
         <button class="mcta" onclick="pay('ult')">Upgrade Now</button>
       </div>
@@ -667,11 +670,10 @@
         <h3>Legendary Performance</h3>
         <p class="price">$999.99/mo</p>
         <ul>
-          <li>Advanced Performance Optimization</li>
-          <li>Custom Animation Design</li>
-          <li>Dedicated Support</li>
-          <li>Personalized Onboarding</li>
-          <li>Ongoing Support</li>
+          <li>All advanced optimizations</li>
+          <li>Personalized onboarding and landing page rundown</li>
+          <li>Custom-tailored, unique micro-animations</li>
+          <li>Dedicated support channels (email, text)</li>
         </ul>
         <button class="mcta" onclick="pay('leg')">Upgrade Now</button>
       </div>
@@ -691,7 +693,7 @@
         </div>
         <div class="why-card">
           <h3>Why ShopSpark?</h3>
-          <p>ShopSpark offers a powerful and easy-to-use solution to supercharge your CTAs and boost conversions. Our unique micro-animation technology captures user attention and encourages them to take action. With ShopSpark, you get the perfect blend of performance, customization, and support for a successful Shopify store.</p>
+          <p>ShopSpark offers a powerful and easy-to-use solution to supercharge your CTAs and boost conversions. Our unique micro-animation technology captures user attention and encourages them to take action. ShopSpark is also able to improve the speed and performance of your page as rated by <a href="https://pagespeed.web.dev/">PageSpeed Insights</a>.  With ShopSpark, you get the perfect blend of improved performance and customization for a successful Shopify store.</p>
         </div>
       </div>
     </div>
@@ -740,19 +742,20 @@
     <p>CTAs are essential for converting visitors into customers or subscribers, and they are often the final step in the conversion process. </p>
     <p>A strong, well-designed CTA can make all the difference in driving user engagement and boosting conversion rates. With ShopSpark's micro-animation script, you can take your CTAs to the next level and make them more engaging, interactive, and effective at driving action.</p>
   </section>
-  <section class="cta-section hide-for-fade-in">
+  <section class="cta-section">
     <h2>Why You Need Micro-Animation in Your Store</h2>
-    <p>If you're looking to increase conversions on your website, having a strong call-to-action (CTA) button is essential. A CTA button is the final step in the conversion process, and it's often the difference between a visitor staying on your site or leaving.</p>
+    <p>If you're looking to increase conversions on your website, having a strong CTA button is essential. A CTA is the final step in the conversion process, and it's often the difference between a visitor staying on your site or leaving.</p>
     <p>But simply having a CTA button isn't enough. You need to make sure that your CTA button stands out, captures attention, and encourages action. That's where micro-animations come in.</p>
     <p>Micro-animations are small, subtle animations that can make a big impact on user engagement and conversion rates. By adding a micro-animation to your CTA button, you can make it more eye-catching, more interactive, and more effective at driving action.</p>
     <p>Studies have shown that adding micro-animations to CTA buttons can increase click-through rates by as much as 20%. That's a significant boost in conversions that can have a real impact on your bottom line.</p>
     <p>With our micro-animation script, you can easily add engaging animations to your CTA buttons and start seeing the results for yourself. Don't let your CTA buttons blend in with the rest of your site - make them stand out and drive conversions with micro-animations.</p>
+    <p>How?  We we include a set smart defaults, what we call "optimization tricks" that will make your site load faster and keep more users on your site for longer!</p>
   </section>
   <section class="cta-section">
     <h2>Why You Don't Need Another App</h2>
-    <p>There's hundreds of bloated apps out there, and they all have one thing in common:  They're slowing down your website and causing users to bounce!</p>
-    <p>At ShopSpark, we know that time is money, which is why we've made it incredibly easy to install our micro-animation script on your website. All you need to do is copy and paste a small code snippet at the bottom of your HTML body, and you'll be up and running in no time.</p>
-    <p>Plus, our script is verified to be lightning-fast and secure, so you don't have to worry about it slowing down your site or compromising your security. With ShopSpark, you can boost your conversions and engage your users with confidence.</p>
+    <p>There's hundreds of bloated apps out there, and they all have one thing in common:  They're slowing down your website and causing your users to "bounce".  In other words, they leave your site!</p>
+    <p>At ShopSpark, we know that time is money, which is why we've made it incredibly easy to install our micro-animation script on your website. All you need to do is copy and paste a small code snippet at the bottom of your HTML body, and you'll be up and running in no time.  Best of all, it actually helps your site <em>load faster</em>!</p>
+    <p>With ShopSpark, you can boost your conversions and engage your users with confidence.</p>
   </section>
   <div id="popup" class="popup-container">
     <div class="popup-content">

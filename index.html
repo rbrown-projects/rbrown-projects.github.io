@@ -73,50 +73,157 @@ document.getElementById('email1').innerHTML += "<a class='btn btn-block btn-lg b
 </script><noscript>Sorry, you need Javascript on to email me.</noscript>
 
 <script>
-  (function() {
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log('optimizing everything...')
-    const images = Array.from(document.querySelectorAll('img'));
-    const hiddenImages = Array.from(document.querySelectorAll('[hidden] img, [aria-hidden="true"] img, [style*="display:none"] img, [style*="display: none"] img'));
 
-    const inViewConfig = {
-      rootMargin: '0px 0px 0px 0px',
-    };
+// 1. Defer non-critical JavaScript
+function deferNonCriticalJS() {
+  const scripts = document.querySelectorAll('script[data-defer]');
+  scripts.forEach((script) => {
+    const newScript = document.createElement('script');
+    const scriptAttributes = Array.from(script.attributes);
 
-    const preloadImage = (image) => {
-      const link = document.createElement('link');
-      link.href = image.src;
-      link.rel = 'preload';
-      link.as = 'image';
-      document.head.appendChild(link);
-    };
+    scriptAttributes.forEach((attr) => newScript.setAttribute(attr.name, attr.value));
 
-    const onIntersection = (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const image = entry.target;
-          if (image.getAttribute('loading') === 'lazy') {
-            image.setAttribute('loading', 'auto');
-          }
-          observer.unobserve(image);
-        }
-      });
-    };
+    newScript.onload = () => script.remove();
+    newScript.src = script.src;
 
-    const observer = new IntersectionObserver(onIntersection, inViewConfig);
-    
-    // Add 'loading="lazy"' for images not in view and observe them
-    images.forEach(image => {
-      image.setAttribute('loading', 'lazy');
-      observer.observe(image);
-    });
-
-    // Pre-fetch hidden images for carousels, galleries, etc.
-    hiddenImages.forEach(image => {
-      preloadImage(image);
-    });
+    document.body.appendChild(newScript);
   });
-})();
+}
+
+
+// 2. Lazy load images
+function lazyLoadImages() {
+  const images = document.querySelectorAll('img[data-lazy]');
+
+  const config = {
+    rootMargin: '200px 0px',
+    threshold: 0.01
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        const src = img.getAttribute('data-lazy');
+        img.src = src;
+        img.removeAttribute('data-lazy');
+        observer.unobserve(img);
+      }
+    });
+  }, config);
+
+  images.forEach((img) => observer.observe(img));
+}
+
+
+// 3. Defer non-critical CSS
+function deferNonCriticalCSS() {
+  const styles = document.querySelectorAll('link[data-defer-css]');
+  styles.forEach((style) => {
+    const newStyle = document.createElement('link');
+    const styleAttributes = Array.from(style.attributes);
+
+    styleAttributes.forEach((attr) => newStyle.setAttribute(attr.name, attr.value));
+
+    newStyle.onload = () => style.remove();
+    newStyle.href = style.href;
+
+    document.body.appendChild(newStyle);
+  });
+}
+
+function addAttributes() {
+  // Add 'data-defer' attribute to all script tags
+  const scriptTags = document.querySelectorAll('script[src]');
+  scriptTags.forEach((script) => {
+    script.setAttribute('data-defer', '');
+    script.setAttribute('defer', '');
+    script.setAttribute('async', '');
+  });
+
+  // Add 'data-defer-css' attribute to all link tags for CSS
+  const cssLinkTags = document.querySelectorAll('link[rel="stylesheet"]');
+  cssLinkTags.forEach((link) => {
+    link.setAttribute('data-defer-css', '');
+    link.setAttribute('defer', '');
+  });
+
+  // Add 'data-lazy' attribute to all image tags
+  const imageTags = document.querySelectorAll('img[src]');
+  imageTags.forEach((img) => {
+    const src = img.getAttribute('src');
+    img.setAttribute('data-lazy', src);
+    img.removeAttribute('src');
+  });
+}
+
+function preventCLS() {
+  // Calculate aspect ratio for images, videos, and background images
+  function calculateAspectRatio(element) {
+    const width = element.naturalWidth || element.videoWidth;
+    const height = element.naturalHeight || element.videoHeight;
+
+    if (width && height) {
+      return (height / width) * 100;
+    }
+
+    return 0;
+  }
+
+  // Set aspect ratio for images, videos, and background images
+  function setAspectRatio(elements) {
+    elements.forEach((element) => {
+      const aspectRatio = calculateAspectRatio(element) || parseFloat(element.getAttribute('data-aspect-ratio'));
+
+      if (aspectRatio) {
+        element.style.aspectRatio = `${aspectRatio}%`;
+      } else {
+        // Fallback: listen for load event if dimensions are not available yet
+        element.addEventListener('load', () => {
+          const newAspectRatio = calculateAspectRatio(element);
+          if (newAspectRatio) {
+            element.style.aspectRatio = `${newAspectRatio}%`;
+          }
+        });
+      }
+    });
+  }
+
+  // Set width and height for iframes (e.g., embedded videos)
+  function setIframeDimensions(iframes) {
+    iframes.forEach((iframe) => {
+      const width = iframe.getAttribute('width');
+      const height = iframe.getAttribute('height');
+
+      if (width && height) {
+        iframe.style.width = `${width}px`;
+        iframe.style.height = `${height}px`;
+      }
+    });
+  }
+
+  // Find images, videos, iframes, and background image elements in the document
+  const images = document.querySelectorAll('img');
+  const videos = document.querySelectorAll('video');
+  const iframes = document.querySelectorAll('iframe');
+  const bgImageElements = document.querySelectorAll('[data-aspect-ratio]');
+
+  // Set aspect ratio for images, videos, and background images
+  setAspectRatio([...images, ...videos, ...bgImageElements]);
+
+  // Set width and height for iframes
+  setIframeDimensions(iframes);
+}
+
+// Run optimizations when the DOM content is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  addAttributes();
+  deferNonCriticalJS();
+  lazyLoadImages();
+  deferNonCriticalCSS();
+  preventCLS();
+});
+
 </script>
 
 </head>
@@ -135,8 +242,8 @@ document.getElementById('email1').innerHTML += "<a class='btn btn-block btn-lg b
   </nav>
 
   <!-- Masthead -->
-  <header class="masthead text-white text-center">
-    <div class="overlay"></div>
+  <header class="masthead text-white text-center" data-aspect-ratio="75">
+    <div class="overlay" data-aspect-ratio="75"></div>
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
@@ -280,7 +387,7 @@ document.getElementById('email1').innerHTML += "<a class='btn btn-block btn-lg b
   </section>
 
   <!-- Call to Action -->
-  <section id="contact" class="call-to-action text-white text-center">
+  <section id="contact" data-aspect-ratio="75" class="call-to-action text-white text-center">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
